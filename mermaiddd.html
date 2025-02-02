@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mermaid Theme Example</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs"></script>
+</head>
+<body>
+
+  <h1>Customized Mermaid Diagram</h1>
+
+  <div class="mermaid">
+    %%{init: {"theme": "base", "themeVariables": {"primaryColor": "#ADD8E6", "textColor": "#000000", "primaryBorderColor": "#000000"}}}%%
+    graph TD;
+      A[Start] --> B[Process];
+      B --> C{Decision};
+      C -->|Yes| D[End];
+      C -->|No| E[Retry];
+  </div>
+
+  <script>
+    // Initialize Mermaid
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+</body>
+</html>

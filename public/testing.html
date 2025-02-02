@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Display</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #6e45e2, #88d3ce);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .liquid {
+      width: 200px;
+      height: 200px;
+      background: #ff8c00;
+      border-radius: 50%;
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .liquid::before,
+    .liquid::after {
+      content: '';
+      width: 200px;
+      height: 200px;
+      background: #ff4500;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: blob 4s ease-in-out infinite;
+    }
+
+    .liquid::after {
+      background: #ff69b4;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    @keyframes blob {
+      0%, 100% {
+        transform: translate(0) scale(1);
+      }
+      50% {
+        transform: translate(30px, -30px) scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="liquid"></div>
+</body>
+</html>

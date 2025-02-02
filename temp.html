@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChartGPT - Your AI Buddy</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000000;
+      background: url('Thermomatic.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 95.3%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background-color: #121212;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 140px;
+      height: 75px;
+      margin-right: 10px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #5a67ff;
+    }
+
+    .main-container {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 6rem;
+      font-weight: 700;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #bbbbbb;
+    }
+
+    .get-started {
+      margin-top: 30px;
+    }
+
+    .get-started button {
+      background-color: #5a67ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .get-started button:hover {
+      background-color: #434efc;
+    }
+
+    #chat-container {
+      background: #121212;
+      border-radius: 15px;
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: none; /* Hidden initially */
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto;
+      max-height: 70vh;
+    }
+
+    #chat-container::-webkit-scrollbar {
+      width: 0; /* Hides the scrollbar */
+      height: 0;
+    }
+
+    #chat-container::-webkit-scrollbar-thumb {
+      background: transparent; /* Optional: hides thumb */
+    }
+
+    .message {
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 5px 0;
+      color: #ffffff;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: #5a67ff;
+    }
+
+    .message.bot {
+      align-self: flex-start;
+    }
+
+    #input-container {
+      display: none; /* Hidden initially */
+      width: 90%;
+      max-width: 900px;
+      margin-top: 10px;
+    }
+
+    #prompt {
+      flex: 1;
+      padding: 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: #1e1e1e;
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    #prompt:focus {
+      outline: none;
+      box-shadow: 0 0 5px #5a67ff;
+    }
+
+    button {
+      background-color: #5a67ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 15px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      background-color: #434efc;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #555;
+      text-align: center;
+    }
+
+    .mermaid {
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 10px;
+      width: 100%;
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logooo.png" alt="ChartGPT Logo">
+    </div>
+    <nav>
+      <a href="#about">About Us</a>
+      <a href="#signup">Sign Up</a>
+      <a href="#login">Log In</a>
+    </nav>
+  </header>
+
+  <div class="main-container">
+    <h1>ChartGPT</h1>
+    <p>Your AI buddy for crafting flowcharts</p>
+    <div class="get-started">
+      <button onclick="startApp()">Get Started</button>
+    </div>
+  </div>
+
+  <div id="chat-container"></div>
+
+  <div id="input-container">
+    <textarea id="prompt" placeholder="Type your message here..."></textarea>
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <footer>
+    Powered by the Hackstreet Boys
+  </footer>
+
+  <script>
+    const chatContainer = document.getElementById('chat-container');
+    const inputContainer = document.getElementById('input-container');
+
+    
+
+    function startApp() {
+      document.querySelector('.main-container').style.display = 'none';
+      chatContainer.style.display = 'flex';
+      inputContainer.style.display = 'flex';
+
+      // Initialize Mermaid here
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'base',
+        themeVariables: {
+          primaryTextColor: '#fff000', // Example: Set font color to red
+          fontFamily: 'Arial',           // Example: Set font family
+          fontSize: '16px'              // Example: Set font size
+        }
+      });
+    
+
+    }
+
+    function addMessage(content, sender) {
+      const message = document.createElement('div');
+      message.className = `message ${sender}`;
+      message.innerHTML = content;
+      chatContainer.appendChild(message);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function sendMessage() {
+      const prompt = document.getElementById('prompt').value;
+      if (!prompt.trim()) return;
+      addMessage(prompt, 'user');
+      document.getElementById('prompt').value = '';
+      // Simulate sending the prompt to the backend
+      fetch('http://localhost:3000/generate', 
+      {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+      }
+    )
+    .then(response => response.json())
+    .then(data => {
+      const mermaidCode = `<div class="mermaid">${data.mermaidCode}</div>`;  // Fixed here
+      addMessage(mermaidCode, 'bot');
+      mermaid.init(undefined, ".mermaid");  // Renders the flowchart
+      })
+    .catch(error => {
+    addMessage('Error generating flowchart. Please try again.', 'bot');
+    console.error('Error:', error);
+    });
+  }
+  </script>
+</body>
+</html>

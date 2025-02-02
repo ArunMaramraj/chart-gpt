@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ChartGPT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000000;
+      background: url('Thermomatic.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+
+
+    header {
+      width: 95.3%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background-color: #121212;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      position: fixed; /* Fix the header to the top */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 140px;
+      height: 75px;
+    }
+
+    nav a, .home-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    nav a:hover, .home-link:hover {
+      color: #5a67ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #5a67ff;
+    }
+
+    .login-container {
+      background-color: rgba(18, 18, 18, 0.8);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 50px;
+    }
+
+    .login-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .login-container input {
+      background-color: #1e1e1e;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 1rem;
+      padding: 15px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-container input:focus {
+      outline: none;
+      box-shadow: 0 0 5px #5a67ff;
+    }
+
+    .login-container button {
+      background-color: #5a67ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 15px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-container button:hover {
+      background-color: #434efc;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      
+      <a href="index.html" class="home-link"><img src="logooo.png" alt="ChartGPT Logo"></a>
+    </div>
+    <nav>
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html">Log In</a>
+    </nav>
+  </header>
+
+  <div class="login-container">
+    <h1>Log In</h1>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button>Log In</button>
+  </div>
+
+  <footer>
+    Powered by the Hackstreet Boys
+  </footer>
+</body>
+</html>
