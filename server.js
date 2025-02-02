@@ -6,7 +6,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const session = require('express-session'); // Import express-session
 
 const app = express();
-const PORT = 3000;
+const PORT =  process.env.PORT || 3000;
 
 // Middleware for parsing JSON data
 app.use(bodyParser.json());
