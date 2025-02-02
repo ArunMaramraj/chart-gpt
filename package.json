@@ -16,7 +16,6 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
-    "mermaid": "^11.4.1",
-    "package.json": "^2.0.1"
+    "mermaid": "^11.4.1"
   }
 }

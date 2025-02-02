@@ -4,26 +4,27 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const session = require('express-session'); // Import express-session
+const path = require('path');
 
 const app = express();
-const PORT =  process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware for parsing JSON data
 app.use(bodyParser.json());
 
 // Session middleware for contextual memory
 app.use(session({
-  secret: 'your-secret-key', // Replace with a strong secret key
+  secret: process.env.SESSION_SECRET || 'your-secret-key', // Use environment variable for secret
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Use true if your site is served over HTTPS
+  cookie: { secure: process.env.NODE_ENV === 'production' } // Secure cookies in production
 }));
 
 // Serve static files (for frontend)
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Your Gemini API key (Replace with your actual key)
-const GEMINI_API_KEY = 'AIzaSyBabTbA_rBKMcZ9tIUoLX2m_7sYNL_ZYto';  // Replace with your actual Gemini API key
+const GEMINI_API_KEY = "AIzaSyBabTbA_rBKMcZ9tIUoLX2m_7sYNL_ZYto"; // Use environment variable for API key
 
 // Predefined instruction text to prepend
 const instructionText = `
@@ -77,7 +78,7 @@ app.post('/generate', async (req, res) => {
     req.session.previousFlowchart = mermaidcode; // Store the flowchart for future reference
 
     // Return the generated Mermaid.js code as the response
-    res.json({ mermaidCode : mermaidcode });
+    res.json({ mermaidCode: mermaidcode });
 
   } catch (error) {
     console.error("Error during Gemini API call:", error.message);
@@ -92,6 +93,11 @@ app.get('/memory', (req, res) => {
   } else {
     return res.json({ message: 'No memory found for this session.' });
   }
+});
+
+// Catch-all route for serving the main HTML file (for SPAs)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server
